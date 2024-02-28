@@ -1,15 +1,30 @@
 [gd_scene load_steps=5 format=3 uid="uid://dx4rw5t54usdp"]
 
 [ext_resource type="Script" path="res://Scenes/levels/level.gd" id="1_6bxc5"]
-[ext_resource type="Texture2D" uid="uid://deda83weucvcc" path="res://icon.svg" id="1_kxyit"]
-[ext_resource type="Script" path="res://Scenes/Logo.gd" id="2_hlxid"]
+[ext_resource type="Texture2D" uid="uid://hhi4hgdhhi3t" path="res://assets/graphics/objects/gate.png" id="2_igqqn"]
 [ext_resource type="PackedScene" uid="uid://cvn68tkxxsp65" path="res://Scenes/Players/player.tscn" id="4_irmwl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phtp7"]
+size = Vector2(846, 265)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_6bxc5")
 
-[node name="Logo" type="Sprite2D" parent="."]
-texture = ExtResource("1_kxyit")
-script = ExtResource("2_hlxid")
+[node name="Gate" type="StaticBody2D" parent="."]
+
+[node name="GateSprite" type="Sprite2D" parent="Gate"]
+position = Vector2(507, -569)
+texture = ExtResource("2_igqqn")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Gate"]
+polygon = PackedVector2Array(-936, -1353, -924, -17, -864, 131, -724, 203, 140, 203, 140, -173, 1004, -173, 1008, 203, 1844, 208, 1990, 136, 2067, -4, 2068, -1349)
+
+[node name="Area2D" type="Area2D" parent="Gate"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate/Area2D"]
+position = Vector2(568, 20.5)
+shape = SubResource("RectangleShape2D_phtp7")
 
 [node name="Player" parent="." instance=ExtResource("4_irmwl")]
+
+[connection signal="body_entered" from="Gate/Area2D" to="." method="_on_area_2d_body_entered"]
