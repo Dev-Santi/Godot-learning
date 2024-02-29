@@ -10,9 +10,37 @@ radius = 64.0312
 script = ExtResource("1_32525")
 
 [node name="PlayerImage" type="Sprite2D" parent="."]
-position = Vector2(484, 434)
+position = Vector2(1, -35)
+rotation = 1.5708
 texture = ExtResource("1_or8fv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(483, 469)
+position = Vector2(-1, 0)
 shape = SubResource("CircleShape2D_3m18m")
+
+[node name="Timer_shoot" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Timer_grenade" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="LaserStartPositions" type="Node2D" parent="."]
+
+[node name="Marker_1" type="Marker2D" parent="LaserStartPositions"]
+position = Vector2(94, -17)
+
+[node name="Marker_2" type="Marker2D" parent="LaserStartPositions"]
+position = Vector2(88, -7)
+
+[node name="Marker_3" type="Marker2D" parent="LaserStartPositions"]
+position = Vector2(91, -23)
+
+[node name="GrenadeStartPosition" type="Node2D" parent="."]
+
+[node name="Marker" type="Marker2D" parent="GrenadeStartPosition"]
+position = Vector2(53, 12)
+
+[connection signal="timeout" from="Timer_shoot" to="." method="_on_timer_shoot_timeout"]
+[connection signal="timeout" from="Timer_grenade" to="." method="_on_timer_grenade_timeout"]
