@@ -1,11 +1,100 @@
-[gd_scene load_steps=4 format=3 uid="uid://dx4rw5t54usdp"]
+[gd_scene load_steps=17 format=3 uid="uid://dx4rw5t54usdp"]
 
 [ext_resource type="Script" path="res://Scenes/levels/level.gd" id="1_6bxc5"]
 [ext_resource type="PackedScene" uid="uid://cpdy8yxet7kfs" path="res://Scenes/objects/gate.tscn" id="2_7t4bu"]
+[ext_resource type="Texture2D" uid="uid://cwyrqdenu448g" path="res://assets/graphics/ground/stones.png" id="2_iaggi"]
+[ext_resource type="Texture2D" uid="uid://5j16utxkyjkv" path="res://assets/graphics/decals/dirt_patch.png" id="3_g81wv"]
 [ext_resource type="PackedScene" uid="uid://cvn68tkxxsp65" path="res://Scenes/Players/player.tscn" id="4_irmwl"]
+[ext_resource type="Texture2D" uid="uid://c8g1xwq5u23vq" path="res://assets/graphics/decals/moss/moss_1.png" id="4_vk7mv"]
+[ext_resource type="Texture2D" uid="uid://sc6xcne3kmmy" path="res://assets/graphics/decals/moss/moss_2.png" id="5_iltvy"]
+[ext_resource type="Texture2D" uid="uid://dxgi8lsyhe57x" path="res://assets/graphics/decals/moss/moss_3.png" id="6_q5lbx"]
+[ext_resource type="Texture2D" uid="uid://r58pul1r2e7p" path="res://assets/graphics/decals/moss/moss_4.png" id="7_38jph"]
+[ext_resource type="Texture2D" uid="uid://c3w5jcxhrs5x" path="res://assets/graphics/decals/moss/moss_5.png" id="8_c42v2"]
+[ext_resource type="Texture2D" uid="uid://202ml2phdk84" path="res://assets/graphics/tilesets/outside_walls.png" id="9_n61vt"]
+[ext_resource type="Texture2D" uid="uid://bhvo82hl2s4fc" path="res://assets/graphics/tilesets/soil.png" id="10_8bt62"]
+[ext_resource type="PackedScene" uid="uid://ca3uqa7t4xwy8" path="res://Scenes/house.tscn" id="11_7cm6p"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d0xvn"]
+resource_name = "walls"
+texture = ExtResource("9_n61vt")
+texture_region_size = Vector2i(390, 390)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_76kmu"]
+resource_name = "soil"
+texture = ExtResource("10_8bt62")
+texture_region_size = Vector2i(390, 390)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_uosft"]
+tile_size = Vector2i(390, 390)
+sources/0 = SubResource("TileSetAtlasSource_d0xvn")
+sources/1 = SubResource("TileSetAtlasSource_76kmu")
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_6bxc5")
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="soil" type="Sprite2D" parent="Ground"]
+texture_repeat = 2
+position = Vector2(595, 827)
+texture = ExtResource("2_iaggi")
+region_enabled = true
+region_rect = Rect2(-17.826, -22.313, 16000, 10000)
+
+[node name="Decoration" type="Sprite2D" parent="Ground"]
+modulate = Color(1, 1, 0.733333, 0.854902)
+position = Vector2(-1142, 1161)
+texture = ExtResource("3_g81wv")
+
+[node name="Moss1" type="Sprite2D" parent="Ground"]
+position = Vector2(1421, 1213)
+texture = ExtResource("4_vk7mv")
+
+[node name="Moss2" type="Sprite2D" parent="Ground"]
+position = Vector2(1573, 2009)
+texture = ExtResource("5_iltvy")
+
+[node name="Moss3" type="Sprite2D" parent="Ground"]
+position = Vector2(236, 1946)
+texture = ExtResource("6_q5lbx")
+
+[node name="Moss4" type="Sprite2D" parent="Ground"]
+position = Vector2(905, 1662)
+texture = ExtResource("7_38jph")
+
+[node name="Moss5" type="Sprite2D" parent="Ground"]
+position = Vector2(413, 1391)
+texture = ExtResource("8_c42v2")
+
+[node name="TileMap" type="TileMap" parent="Ground"]
+tile_set = SubResource("TileSet_uosft")
+format = 2
+layer_0/name = "Soil"
+layer_1/name = "Walls"
+layer_1/tile_data = PackedInt32Array()
+
+[node name="House" parent="Ground" instance=ExtResource("11_7cm6p")]
+position = Vector2(-2420, 3106)
+rotation = -1.57079
 
 [node name="Gate" parent="." instance=ExtResource("2_7t4bu")]
 position = Vector2(484, -462)
@@ -14,6 +103,7 @@ position = Vector2(484, -462)
 position = Vector2(596, 542)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 
 [node name="Proyectiles" type="Node2D" parent="."]

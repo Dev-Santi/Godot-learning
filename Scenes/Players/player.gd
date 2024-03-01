@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal shooting(start_position, direction)
 signal throwing_grenade(position, direction)
 
-var speed:int = 400
+var speed:int = 550
 var can_shoot:bool = true
 var can_use_grenade = true
 
