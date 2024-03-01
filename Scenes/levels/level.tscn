@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dx4rw5t54usdp"]
+[gd_scene load_steps=5 format=3 uid="uid://dx4rw5t54usdp"]
 
 [ext_resource type="Script" path="res://Scenes/levels/level.gd" id="1_6bxc5"]
 [ext_resource type="PackedScene" uid="uid://cpdy8yxet7kfs" path="res://Scenes/objects/gate.tscn" id="2_7t4bu"]
 [ext_resource type="PackedScene" uid="uid://cvn68tkxxsp65" path="res://Scenes/Players/player.tscn" id="4_irmwl"]
+[ext_resource type="PackedScene" uid="uid://c1pc622xupgkc" path="res://Scenes/objects/steam_vent.tscn" id="4_u8ltu"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_6bxc5")
@@ -17,6 +18,9 @@ position = Vector2(596, 542)
 position_smoothing_enabled = true
 
 [node name="Proyectiles" type="Node2D" parent="."]
+
+[node name="SteamVent" parent="." instance=ExtResource("4_u8ltu")]
+position = Vector2(-189, 612)
 
 [connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]
 [connection signal="shooting" from="Player" to="." method="_on_player_shooting"]
