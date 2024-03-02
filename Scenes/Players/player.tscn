@@ -11,7 +11,10 @@ radius = 64.0312
 particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 15.0
-gravity = Vector3(2000, 0, 0)
+spread = 14.157
+initial_velocity_min = 44.95
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 0, 0)
 scale_min = 0.1
 scale_max = 0.5
 color = Color(0.254902, 1, 1, 1)
@@ -56,10 +59,10 @@ position = Vector2(38, 47)
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(103, 17)
 emitting = false
-amount = 20
+amount = 30
 process_material = SubResource("ParticleProcessMaterial_6f27x")
 texture = ExtResource("3_q6d30")
-lifetime = 0.4
+lifetime = 0.5
 one_shot = true
 
 [connection signal="timeout" from="Timer_shoot" to="." method="_on_timer_shoot_timeout"]
