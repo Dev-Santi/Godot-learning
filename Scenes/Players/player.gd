@@ -21,6 +21,9 @@ func _process(_delta):
 		var posible_positions = $LaserStartPositions.get_children()
 		var selected_position = posible_positions[randi() % posible_positions.size()]
 		var bullet_direction = (get_global_mouse_position() - position).normalized()
+		
+		$GPUParticles2D.emitting = true
+		
 		shooting.emit(selected_position.global_position, bullet_direction)
 		
 		$Timer_shoot.start()

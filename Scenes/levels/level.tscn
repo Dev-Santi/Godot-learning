@@ -1,17 +1,10 @@
-<<<<<<< HEAD
-[gd_scene load_steps=5 format=3 uid="uid://dx4rw5t54usdp"]
-=======
-[gd_scene load_steps=17 format=3 uid="uid://dx4rw5t54usdp"]
->>>>>>> 4fc105e7ce8de85912e4825d2514ec40081bf8ab
+[gd_scene load_steps=18 format=3 uid="uid://dx4rw5t54usdp"]
 
 [ext_resource type="Script" path="res://Scenes/levels/level.gd" id="1_6bxc5"]
 [ext_resource type="PackedScene" uid="uid://cpdy8yxet7kfs" path="res://Scenes/objects/gate.tscn" id="2_7t4bu"]
 [ext_resource type="Texture2D" uid="uid://cwyrqdenu448g" path="res://assets/graphics/ground/stones.png" id="2_iaggi"]
 [ext_resource type="Texture2D" uid="uid://5j16utxkyjkv" path="res://assets/graphics/decals/dirt_patch.png" id="3_g81wv"]
 [ext_resource type="PackedScene" uid="uid://cvn68tkxxsp65" path="res://Scenes/Players/player.tscn" id="4_irmwl"]
-<<<<<<< HEAD
-[ext_resource type="PackedScene" uid="uid://c1pc622xupgkc" path="res://Scenes/objects/steam_vent.tscn" id="4_u8ltu"]
-=======
 [ext_resource type="Texture2D" uid="uid://c8g1xwq5u23vq" path="res://assets/graphics/decals/moss/moss_1.png" id="4_vk7mv"]
 [ext_resource type="Texture2D" uid="uid://sc6xcne3kmmy" path="res://assets/graphics/decals/moss/moss_2.png" id="5_iltvy"]
 [ext_resource type="Texture2D" uid="uid://dxgi8lsyhe57x" path="res://assets/graphics/decals/moss/moss_3.png" id="6_q5lbx"]
@@ -20,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://202ml2phdk84" path="res://assets/graphics/tilesets/outside_walls.png" id="9_n61vt"]
 [ext_resource type="Texture2D" uid="uid://bhvo82hl2s4fc" path="res://assets/graphics/tilesets/soil.png" id="10_8bt62"]
 [ext_resource type="PackedScene" uid="uid://ca3uqa7t4xwy8" path="res://Scenes/house.tscn" id="11_7cm6p"]
+[ext_resource type="PackedScene" uid="uid://c1pc622xupgkc" path="res://Scenes/objects/steam_vent.tscn" id="12_jbh6x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d0xvn"]
 resource_name = "walls"
@@ -54,7 +48,6 @@ texture_region_size = Vector2i(390, 390)
 tile_size = Vector2i(390, 390)
 sources/0 = SubResource("TileSetAtlasSource_d0xvn")
 sources/1 = SubResource("TileSetAtlasSource_76kmu")
->>>>>>> 4fc105e7ce8de85912e4825d2514ec40081bf8ab
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_6bxc5")
@@ -104,8 +97,11 @@ layer_1/tile_data = PackedInt32Array()
 position = Vector2(-2420, 3106)
 rotation = -1.57079
 
+[node name="SteamVent" parent="Ground" instance=ExtResource("12_jbh6x")]
+position = Vector2(350, 741)
+
 [node name="Gate" parent="." instance=ExtResource("2_7t4bu")]
-position = Vector2(484, -462)
+position = Vector2(605, -482)
 
 [node name="Player" parent="." instance=ExtResource("4_irmwl")]
 position = Vector2(596, 542)
@@ -115,9 +111,6 @@ zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 
 [node name="Proyectiles" type="Node2D" parent="."]
-
-[node name="SteamVent" parent="." instance=ExtResource("4_u8ltu")]
-position = Vector2(-189, 612)
 
 [connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]
 [connection signal="shooting" from="Player" to="." method="_on_player_shooting"]
