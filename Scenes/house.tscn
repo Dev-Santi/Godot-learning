@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ca3uqa7t4xwy8"]
+[gd_scene load_steps=6 format=3 uid="uid://ca3uqa7t4xwy8"]
 
 [ext_resource type="Texture2D" uid="uid://dmdf23btp7qmf" path="res://assets/graphics/tilesets/interior.png" id="1_15i82"]
+[ext_resource type="PackedScene" uid="uid://cotmwegxjue2q" path="res://Scenes/objects/simple_light.tscn" id="2_ii08p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lknfv"]
 texture = ExtResource("1_15i82")
@@ -180,3 +181,7 @@ layer_2/tile_data = PackedInt32Array(327683, 327680, 8, 262147, 131072, 7, 26214
 visible = false
 position = Vector2(1167, 971)
 shape = SubResource("RectangleShape2D_r8rp6")
+
+[node name="SimpleLight" parent="." instance=ExtResource("2_ii08p")]
+position = Vector2(2459, 1054)
+rotation = 1.5708
