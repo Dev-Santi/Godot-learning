@@ -17,3 +17,10 @@ texture = ExtResource("1_1v6yw")
 position = Vector2(30, 1)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_fa471")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

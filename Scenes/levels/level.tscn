@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dx4rw5t54usdp"]
+[gd_scene load_steps=20 format=3 uid="uid://dx4rw5t54usdp"]
 
 [ext_resource type="Script" path="res://Scenes/levels/level.gd" id="1_6bxc5"]
 [ext_resource type="PackedScene" uid="uid://cpdy8yxet7kfs" path="res://Scenes/objects/gate.tscn" id="2_7t4bu"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://bhvo82hl2s4fc" path="res://assets/graphics/tilesets/soil.png" id="10_8bt62"]
 [ext_resource type="PackedScene" uid="uid://ca3uqa7t4xwy8" path="res://Scenes/house.tscn" id="11_7cm6p"]
 [ext_resource type="PackedScene" uid="uid://c1pc622xupgkc" path="res://Scenes/objects/steam_vent.tscn" id="12_jbh6x"]
+[ext_resource type="PackedScene" uid="uid://c2na53urku7mh" path="res://Scenes/objects/fan.tscn" id="12_jkxia"]
+[ext_resource type="PackedScene" uid="uid://djmsoawmj0yom" path="res://Scenes/objects/enemy.tscn" id="16_wmf6g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d0xvn"]
 resource_name = "walls"
@@ -56,7 +58,7 @@ script = ExtResource("1_6bxc5")
 
 [node name="soil" type="Sprite2D" parent="Ground"]
 texture_repeat = 2
-position = Vector2(595, 827)
+position = Vector2(60, 219)
 texture = ExtResource("2_iaggi")
 region_enabled = true
 region_rect = Rect2(-17.826, -22.313, 16000, 10000)
@@ -100,8 +102,14 @@ rotation = -1.57079
 [node name="SteamVent" parent="Ground" instance=ExtResource("12_jbh6x")]
 position = Vector2(350, 741)
 
+[node name="Fan" parent="Ground" instance=ExtResource("12_jkxia")]
+position = Vector2(-1207, 2917)
+autoplay = "default"
+frame_progress = 0.243255
+
 [node name="Gate" parent="." instance=ExtResource("2_7t4bu")]
 position = Vector2(605, -482)
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("4_irmwl")]
 position = Vector2(596, 542)
@@ -112,6 +120,15 @@ position_smoothing_enabled = true
 
 [node name="Proyectiles" type="Node2D" parent="."]
 
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.43
+blend_mode = 1
+
+[node name="Enemy" parent="." instance=ExtResource("16_wmf6g")]
+position = Vector2(924, 891)
+
+[connection signal="player_entered" from="Ground/House" to="." method="_on_house_player_entered"]
+[connection signal="player_exited" from="Ground/House" to="." method="_on_house_player_exited"]
 [connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]
 [connection signal="shooting" from="Player" to="." method="_on_player_shooting"]
 [connection signal="throwing_grenade" from="Player" to="." method="_on_player_throwing_grenade"]
